@@ -1,0 +1,56 @@
+basePath: /
+definitions:
+  controllers.Error:
+    properties:
+      message:
+        type: string
+    type: object
+  dtos.CreateUserInput:
+    properties:
+      email:
+        type: string
+      last_name:
+        type: string
+      name:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: reangeline@hotmail.com
+    name: Renato Saraiva Angeline
+  description: API
+  termsOfService: http://swagger.io/terms/
+  title: Food Scan API
+  version: "1.0"
+paths:
+  /users:
+    post:
+      consumes:
+      - application/json
+      description: Create user
+      parameters:
+      - description: user request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.CreateUserInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.Error'
+      summary: Create user
+      tags:
+      - users
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
