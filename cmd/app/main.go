@@ -12,6 +12,8 @@ import (
 	_ "github.com/lib/pq"
 	_ "github.com/reangeline/foodscan_backend/docs"
 	httpSwagger "github.com/swaggo/http-swagger"
+
+	"github.com/reangeline/foodscan_backend/internal/infra/graphql"
 )
 
 // @title           Food Scan API
@@ -53,8 +55,9 @@ func main() {
 
 	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
 
-	err = http.ListenAndServe(":"+configs.WebServerPort, r)
+	go graphql.ServerGQL()
 
+	err = http.ListenAndServe(":"+configs.WebServerPort, r)
 	if err != nil {
 		panic(err)
 	}
