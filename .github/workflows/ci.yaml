@@ -11,6 +11,7 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: 1.20
+      - run: go mod tidy
       - run: go test -coverpkg=./... -coverprofile cover.out -v ./...
       - run: go run ./cmd/app main.go
       # - name: Set up QEMU
