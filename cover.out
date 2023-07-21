@@ -1,14 +1,14 @@
 mode: set
 github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:16.74,27.16 4 1
-github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:27.16,29.3 1 0
+github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:27.16,29.3 1 1
 github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:31.2,31.18 1 1
 github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:34.24,36.2 1 1
 github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:38.32,40.18 1 1
 github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:40.18,42.3 1 1
 github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:44.2,44.22 1 1
-github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:44.22,46.3 1 0
+github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:44.22,46.3 1 1
 github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:48.2,48.19 1 1
-github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:48.19,50.3 1 0
+github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:48.19,50.3 1 1
 github.com/reangeline/foodscan_backend/internal/domain/entities/user.go:52.2,52.12 1 1
 github.com/reangeline/foodscan_backend/pkg/entities/id.go:7.17,9.2 1 1
 github.com/reangeline/foodscan_backend/pkg/entities/id.go:11.36,14.2 2 0

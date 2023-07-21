@@ -44,3 +44,17 @@ func TestGivenAValidParams_WhenICallNewUserFunc_ThenIShouldReceiveCreateUserWith
 	assert.Equal(t, "reangeline@hotmail.com", u.Email)
 
 }
+
+func TestGivenAInvalidParams_WhenDontSendLastName_ThenIShouldReceiveErrorLastNameIsRequired(t *testing.T) {
+
+	_, err := entities.NewUser("Renato", "", "reangeline@hotmail.com")
+	assert.Error(t, err)
+
+}
+
+func TestGivenAInvalidParams_WhenDontSendEmail_ThenIShouldReceiveErrorEmailIsRequired(t *testing.T) {
+
+	_, err := entities.NewUser("Renato", "Angeline", "")
+	assert.Error(t, err)
+
+}
