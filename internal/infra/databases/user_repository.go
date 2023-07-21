@@ -41,11 +41,10 @@ func (u *UserRepository) callTx(ctx context.Context, fn func(*sqlc.Queries) erro
 func (u *UserRepository) CreateUser(ctx context.Context, user *entities.User) error {
 
 	err := u.callTx(ctx, func(q *sqlc.Queries) error {
-		var err error
 
 		// profilePicture := sql.NullString{String: user.ProfilePicture, Valid: false}
 
-		err = q.CreateUser(ctx, sqlc.CreateUserParams{
+		err := q.CreateUser(ctx, sqlc.CreateUserParams{
 			IDUser:   user.IDUser,
 			Name:     user.Name,
 			LastName: user.LastName,
