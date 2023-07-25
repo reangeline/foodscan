@@ -14,7 +14,7 @@ jobs:
           cache-dependency-path: go.sum
 
       - name: Install dependencies
-        run: go mod downloadgo.mod
+        run: go mod download
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
