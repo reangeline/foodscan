@@ -1,4 +1,4 @@
-package databases
+package mock
 
 import (
 	"context"
@@ -27,7 +27,7 @@ func (r *UserRepositoryMock) FindByEmail(email string) (*dtos.UserOutputDTO, err
 	user, ok := r.Users[email]
 
 	if !ok {
-		return nil, errors.New("not found")
+		return nil, errors.New("email is not found")
 	}
 
 	return &dtos.UserOutputDTO{

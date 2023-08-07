@@ -20,6 +20,7 @@ import (
 
 import (
 	_ "github.com/lib/pq"
+	_ "github.com/reangeline/foodscan_backend/docs"
 )
 
 // Injectors from wire.go:
