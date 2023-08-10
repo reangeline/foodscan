@@ -13,13 +13,14 @@ import (
 	usecases2 "github.com/reangeline/foodscan_backend/internal/domain/contracts/usecases"
 	"github.com/reangeline/foodscan_backend/internal/domain/usecases"
 	"github.com/reangeline/foodscan_backend/internal/infra/databases"
-	"github.com/reangeline/foodscan_backend/internal/infra/http/controllers"
-	"github.com/reangeline/foodscan_backend/internal/validation/protocols"
-	"github.com/reangeline/foodscan_backend/internal/validation/validators"
+	"github.com/reangeline/foodscan_backend/internal/presentation/controllers"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/protocols"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/validators"
 )
 
 import (
 	_ "github.com/lib/pq"
+	_ "github.com/reangeline/foodscan_backend/docs"
 )
 
 // Injectors from wire.go:

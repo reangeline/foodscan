@@ -4,5 +4,5 @@ migrate -path=internal/infra/databases/postgres/migrations -database "postgres:/
 
 swag init -g cmd/app/main.go
 
-go test -coverpkg=./... -coverprofile cover.out -v ./...  
+go test -coverpkg=./... -coverprofile coverage.out -v ./...  
 go tool cover -html=cover.out
