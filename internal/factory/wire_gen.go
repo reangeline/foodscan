@@ -4,7 +4,7 @@
 //go:build !wireinject
 // +build !wireinject
 
-package main
+package factory
 
 import (
 	"database/sql"
@@ -18,14 +18,9 @@ import (
 	"github.com/reangeline/foodscan_backend/internal/presentation/validation/validators"
 )
 
-import (
-	_ "github.com/lib/pq"
-	_ "github.com/reangeline/foodscan_backend/docs"
-)
-
 // Injectors from wire.go:
 
-func InitializeUserController(db *sql.DB) (*controllers.UserController, error) {
+func InitializeUser(db *sql.DB) (*controllers.UserController, error) {
 	userRepository := databases.NewUserRepository(db)
 	userUseCase := usecases.NewUserUseCase(userRepository)
 	userValidator := validators.NewUserValidator()

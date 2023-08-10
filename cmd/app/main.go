@@ -3,15 +3,12 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"log"
-	"net/http"
 
 	"github.com/reangeline/foodscan_backend/configs"
-	"github.com/reangeline/foodscan_backend/internal/infra/http/routes"
+	"github.com/reangeline/foodscan_backend/internal/infra/http"
 
 	_ "github.com/lib/pq"
 	_ "github.com/reangeline/foodscan_backend/docs"
-	httpSwagger "github.com/swaggo/http-swagger"
 
 	"github.com/reangeline/foodscan_backend/internal/infra/graphql"
 )
@@ -46,20 +43,8 @@ func main() {
 		panic(err)
 	}
 
-	uc, err := InitializeUserController(db)
-	if err != nil {
-		log.Fatalf("failed to initialize user controller: %v", err)
-	}
-
-	r := routes.InitializeUserRoutes(uc)
-
-	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
-
 	go graphql.ServerGQL()
 
-	err = http.ListenAndServe(":"+configs.WebServerPort, r)
-	if err != nil {
-		panic(err)
-	}
+	http.ServerHttp(db, configs)
 
 }
