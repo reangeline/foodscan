@@ -6,7 +6,7 @@ import (
 
 	"github.com/reangeline/foodscan_backend/internal/domain/contracts/usecases"
 	"github.com/reangeline/foodscan_backend/internal/dtos"
-	"github.com/reangeline/foodscan_backend/internal/validation/protocols"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/protocols"
 )
 
 type Error struct {
@@ -18,7 +18,10 @@ type UserController struct {
 	userValidator protocols.UserValidatorInterface
 }
 
-func NewUserController(userUseCase usecases.UserUseCaseInterface, userValidator protocols.UserValidatorInterface) *UserController {
+func NewUserController(
+	userUseCase usecases.UserUseCaseInterface,
+	userValidator protocols.UserValidatorInterface,
+) *UserController {
 	return &UserController{
 		userUseCase:   userUseCase,
 		userValidator: userValidator,
