@@ -1,7 +1,7 @@
 //go:build wireinject
 // +build wireinject
 
-package main
+package factory
 
 import (
 	"github.com/google/wire"
@@ -34,7 +34,7 @@ var setUserValidatorDependency = wire.NewSet(
 	wire.Bind(new(protocols.UserValidatorInterface), new(*validators.UserValidator)),
 )
 
-func InitializeUserController(db *sql.DB) (*controllers.UserController, error) {
+func InitializeUser(db *sql.DB) (*controllers.UserController, error) {
 	wire.Build(
 		setUserRepositoryDependency,
 		setUserUseCaseDependency,
