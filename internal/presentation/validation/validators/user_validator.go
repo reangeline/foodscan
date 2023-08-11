@@ -19,10 +19,6 @@ func (uv *UserValidator) ValidateUser(user *dtos.CreateUserInput) error {
 		return err.ErrValidEmail
 	}
 
-	if user.Email == "" {
-		return err.ErrEmailIsRequired
-	}
-
 	if user.Name == "" {
 		return err.ErrNameIsRequired
 	}
