@@ -44,6 +44,16 @@ github.com/reangeline/foodscan_backend/internal/infra/databases/mock/user_reposi
 github.com/reangeline/foodscan_backend/internal/infra/databases/mock/user_repository_mock.go:33.2,38.8 1 1
 github.com/reangeline/foodscan_backend/pkg/entities/id.go:7.17,9.2 1 1
 github.com/reangeline/foodscan_backend/pkg/entities/id.go:11.36,14.2 2 0
+github.com/reangeline/foodscan_backend/internal/presentation/controllers/user_controller.go:24.19,29.2 1 1
+github.com/reangeline/foodscan_backend/internal/presentation/controllers/user_controller.go:41.77,46.16 4 1
+github.com/reangeline/foodscan_backend/internal/presentation/controllers/user_controller.go:46.16,51.3 4 1
+github.com/reangeline/foodscan_backend/internal/presentation/controllers/user_controller.go:53.2,54.16 2 1
+github.com/reangeline/foodscan_backend/internal/presentation/controllers/user_controller.go:54.16,57.3 2 0
+github.com/reangeline/foodscan_backend/internal/presentation/controllers/user_controller.go:59.2,61.16 3 1
+github.com/reangeline/foodscan_backend/internal/presentation/controllers/user_controller.go:61.16,64.3 2 0
+github.com/reangeline/foodscan_backend/internal/presentation/controllers/user_controller.go:66.2,66.35 1 1
+github.com/reangeline/foodscan_backend/pkg/entities/id.go:7.17,9.2 1 0
+github.com/reangeline/foodscan_backend/pkg/entities/id.go:11.36,14.2 2 0
 github.com/reangeline/foodscan_backend/internal/presentation/validation/validators/user_validator.go:12.40,14.2 1 1
 github.com/reangeline/foodscan_backend/internal/presentation/validation/validators/user_validator.go:16.73,18.40 1 1
 github.com/reangeline/foodscan_backend/internal/presentation/validation/validators/user_validator.go:18.40,20.3 1 1
