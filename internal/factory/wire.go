@@ -1,7 +1,7 @@
 //go:build wireinject
 // +build wireinject
 
-package main
+package factory
 
 import (
 	"github.com/google/wire"
@@ -10,13 +10,13 @@ import (
 
 	"github.com/reangeline/foodscan_backend/internal/domain/contracts/repositories"
 	uc_interface "github.com/reangeline/foodscan_backend/internal/domain/contracts/usecases"
-	"github.com/reangeline/foodscan_backend/internal/validation/protocols"
 
 	"github.com/reangeline/foodscan_backend/internal/domain/usecases"
 	"github.com/reangeline/foodscan_backend/internal/infra/databases"
-	"github.com/reangeline/foodscan_backend/internal/validation/validators"
 
-	"github.com/reangeline/foodscan_backend/internal/infra/http/controllers"
+	"github.com/reangeline/foodscan_backend/internal/presentation/controllers"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/protocols"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/validators"
 )
 
 var setUserRepositoryDependency = wire.NewSet(
@@ -34,7 +34,7 @@ var setUserValidatorDependency = wire.NewSet(
 	wire.Bind(new(protocols.UserValidatorInterface), new(*validators.UserValidator)),
 )
 
-func InitializeUserController(db *sql.DB) (*controllers.UserController, error) {
+func InitializeUser(db *sql.DB) (*controllers.UserController, error) {
 	wire.Build(
 		setUserRepositoryDependency,
 		setUserUseCaseDependency,

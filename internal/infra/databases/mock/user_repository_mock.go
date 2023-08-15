@@ -1,4 +1,4 @@
-package database_test
+package mock
 
 import (
 	"context"
@@ -8,26 +8,26 @@ import (
 	"github.com/reangeline/foodscan_backend/internal/dtos"
 )
 
-type MemoryUserRepository struct {
+type UserRepositoryMock struct {
 	Users map[string]*entities.User
 }
 
-func NewMemoryUserRepository() *MemoryUserRepository {
-	return &MemoryUserRepository{
+func NewUserRepositoryMock() *UserRepositoryMock {
+	return &UserRepositoryMock{
 		Users: make(map[string]*entities.User),
 	}
 }
 
-func (r *MemoryUserRepository) CreateUser(ctx context.Context, user *entities.User) error {
+func (r *UserRepositoryMock) CreateUser(ctx context.Context, user *entities.User) error {
 	r.Users[user.Email] = user
 	return nil
 }
 
-func (r *MemoryUserRepository) FindByEmail(email string) (*dtos.UserOutputDTO, error) {
+func (r *UserRepositoryMock) FindByEmail(email string) (*dtos.UserOutputDTO, error) {
 	user, ok := r.Users[email]
 
 	if !ok {
-		return nil, errors.New("not found")
+		return nil, errors.New("email is not found")
 	}
 
 	return &dtos.UserOutputDTO{
