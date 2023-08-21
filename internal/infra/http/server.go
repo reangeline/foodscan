@@ -23,6 +23,8 @@ func ServerHttp(db *sql.DB, config *configs.Conf) {
 
 	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
 
+	log.Printf("connect to http://localhost:%s/ for Rest Api", config.WebServerPort)
+
 	err = http.ListenAndServe(":"+config.WebServerPort, r)
 	if err != nil {
 		panic(err)

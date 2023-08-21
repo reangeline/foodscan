@@ -16,7 +16,7 @@ jobs:
       with:
         go-version: 1.19
     - name: Build
-      run: go build -v ./...
+      run: go build -a -installsuffix cgo -o app ./cmd/app
     - name: Test
       run: go test -coverpkg=./... -coverprofile coverage.out -v ./...  
     
