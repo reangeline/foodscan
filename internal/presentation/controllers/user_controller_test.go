@@ -44,7 +44,7 @@ func TestUserController_CreateUser(t *testing.T) {
 
 		rr := httptest.NewRecorder()
 
-		userController.CreateUser(rr, req)
+		userController.CreateUserRest(rr, req)
 
 		assert.Equal(t, http.StatusCreated, rr.Code)
 	})
@@ -55,14 +55,10 @@ func TestUserController_CreateUser(t *testing.T) {
 
 		rr := httptest.NewRecorder()
 
-		userController.CreateUser(rr, req)
+		userController.CreateUserRest(rr, req)
 
 		assert.Equal(t, http.StatusBadRequest, rr.Code)
 
-		// var responseBody Error
-		// err = json.Unmarshal(rr.Body.Bytes(), &responseBody)
-		// assert.NoError(t, err)
-		// assert.Equal(t, "invalid character 'i' looking for beginning of value", responseBody.Message)
 	})
 
 }

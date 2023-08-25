@@ -43,7 +43,7 @@ func main() {
 		panic(err)
 	}
 
-	go graphql.ServerGQL()
+	go graphql.ServerGQL(db, configs)
 
 	http.ServerHttp(db, configs)
 

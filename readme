@@ -6,3 +6,6 @@ swag init -g cmd/app/main.go
 
 go test -coverpkg=./... -coverprofile coverage.out -v ./...  
 go tool cover -html=cover.out
+
+
+go run github.com/99designs/gqlgen generate

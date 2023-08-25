@@ -9,7 +9,7 @@ func InitializeUserRoutes(controller *controllers.UserController) chi.Router {
 	r := chi.NewRouter()
 
 	r.Route("/users", func(r chi.Router) {
-		r.Post("/", controller.CreateUser)
+		r.Post("/", controller.CreateUserRest)
 	})
 
 	return r
