@@ -10,6 +10,7 @@ RUN go mod download
 # Copia o código-fonte do aplicativo
 COPY . .
 
+
 # Compila o aplicativo
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app ./cmd/app
 
@@ -27,8 +28,10 @@ COPY --from=builder /app/app .
 # Copia o arquivo .env para o contêiner
 COPY .env .
 
-# Define a porta na qual o aplicativo irá escutar
-EXPOSE 8000
+# # Define a porta na qual o aplicativo irá escutar
+# EXPOSE 8000
+# EXPOSE 8080
+
 
 # Comando para executar o aplicativo
 CMD ["./app"]
