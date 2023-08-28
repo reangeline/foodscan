@@ -2,6 +2,7 @@ package http
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -21,7 +22,14 @@ func ServerHttp(db *sql.DB, config *configs.Conf) {
 
 	r := routes.InitializeUserRoutes(iu)
 
-	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
+	swaggerUrl := fmt.Sprintf("http://localhost:%s/docs/doc.json", config.WebServerPort)
+
+	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL(swaggerUrl)))
+
+	r.Get("/teste", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/plain")
+		fmt.Fprintln(w, config.DBUser)
+	})
 
 	log.Printf("connect to http://localhost:%s/ for Rest Api", config.WebServerPort)
 

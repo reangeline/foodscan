@@ -9,3 +9,12 @@ go tool cover -html=cover.out
 
 
 go run github.com/99designs/gqlgen generate
+
+docker build -t reangeline/backend:latest . 
+docker push reangeline/backend:latest
+
+wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+kubectl apply -f .k8s/hpa.yaml   
+kubectl port-forward svc/goserver-service 9000:80
+kubectl run -it fortio --rm --image=fortio/fortio -- load -qps 800 -t 120s -c 70 "http://goserver-service/health"

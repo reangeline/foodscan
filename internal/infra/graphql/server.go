@@ -12,8 +12,6 @@ import (
 	"github.com/reangeline/foodscan_backend/internal/infra/graphql/graph"
 )
 
-const defaultPort = "8080"
-
 func ServerGQL(db *sql.DB, config *configs.Conf) {
 
 	userController, err := factory.InitializeUser(db)
