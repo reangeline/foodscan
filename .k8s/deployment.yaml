@@ -54,3 +54,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: goserver-env
+
+      volumes:
+        - name: goserver-volume
+          persistentVolumeClaim:
+            claimName: goserver-pvc
