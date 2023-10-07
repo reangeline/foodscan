@@ -21,6 +21,42 @@ const docTemplate = `{
     "basePath": "{{.BasePath}}",
     "paths": {
         "/users": {
+            "get": {
+                "description": "Find user by email",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "find users"
+                ],
+                "summary": "Find user by email",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Endereço de email do usuário",
+                        "name": "email",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.UserOutputDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.Error"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "Create user",
                 "consumes": [
@@ -71,6 +107,23 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "email": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dtos.UserOutputDTO": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
                     "type": "string"
                 },
                 "last_name": {

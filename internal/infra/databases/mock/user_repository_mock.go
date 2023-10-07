@@ -23,7 +23,7 @@ func (r *UserRepositoryMock) CreateUser(ctx context.Context, user *entities.User
 	return nil
 }
 
-func (r *UserRepositoryMock) FindByEmail(email string) (*dtos.UserOutputDTO, error) {
+func (r *UserRepositoryMock) FindByUserEmail(email string) (*dtos.UserOutputDTO, error) {
 	user, ok := r.Users[email]
 
 	if !ok {

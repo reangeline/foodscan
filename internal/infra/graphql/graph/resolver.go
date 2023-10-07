@@ -1,7 +1,7 @@
 package graph
 
 import (
-	"github.com/reangeline/foodscan_backend/internal/presentation/controllers"
+	controllers "github.com/reangeline/foodscan_backend/internal/presentation/controllers"
 )
 
 // This file will not be regenerated automatically.

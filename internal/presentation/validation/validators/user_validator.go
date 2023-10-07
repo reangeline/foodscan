@@ -4,10 +4,11 @@ import (
 	"strings"
 
 	"github.com/reangeline/foodscan_backend/internal/dtos"
-	err "github.com/reangeline/foodscan_backend/internal/presentation/errors"
+	errors "github.com/reangeline/foodscan_backend/internal/presentation/errors"
 )
 
-type UserValidator struct{}
+type UserValidator struct {
+}
 
 func NewUserValidator() *UserValidator {
 	return &UserValidator{}
@@ -15,16 +16,26 @@ func NewUserValidator() *UserValidator {
 
 func (uv *UserValidator) ValidateUser(user *dtos.CreateUserInput) error {
 
-	if !strings.Contains(user.Email, "@") {
-		return err.ErrValidEmail
+	err := uv.ValidateUserEmail(user.Email)
+	if err != nil {
+		return err
 	}
 
 	if user.Name == "" {
-		return err.ErrNameIsRequired
+		return errors.ErrNameIsRequired
 	}
 
 	if user.LastName == "" {
-		return err.ErrLastNameIsRequired
+		return errors.ErrLastNameIsRequired
+	}
+
+	return nil
+}
+
+func (uv *UserValidator) ValidateUserEmail(email string) error {
+
+	if !strings.Contains(email, "@") {
+		return errors.ErrValidEmail
 	}
 
 	return nil

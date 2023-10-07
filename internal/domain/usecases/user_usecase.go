@@ -42,7 +42,7 @@ func (u *UserUseCase) CreateUser(ctx context.Context, input *dtos.CreateUserInpu
 }
 
 func (u *UserUseCase) CheckEmailExists(email string) (bool, error) {
-	_, err := u.userRepository.FindByEmail(email)
+	_, err := u.userRepository.FindByUserEmail(email)
 	if err != nil {
 		return false, err
 	}
@@ -50,8 +50,8 @@ func (u *UserUseCase) CheckEmailExists(email string) (bool, error) {
 	return true, nil
 }
 
-func (u *UserUseCase) FindByEmail(email string) (*dtos.UserOutputDTO, error) {
-	user, err := u.userRepository.FindByEmail(email)
+func (u *UserUseCase) FindUserByEmail(ctx context.Context, email string) (*dtos.UserOutputDTO, error) {
+	user, err := u.userRepository.FindByUserEmail(email)
 
 	if err != nil {
 		return nil, err

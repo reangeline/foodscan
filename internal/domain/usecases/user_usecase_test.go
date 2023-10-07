@@ -63,7 +63,7 @@ func TestGivenValidEmail_WhenFindEmail_ThenShouldReceiveAnUser(t *testing.T) {
 
 	assert.NoError(t, err)
 
-	user, err := userUseCase.FindByEmail("john@example.com")
+	user, err := userUseCase.FindUserByEmail(context.Background(), "john@example.com")
 
 	if user.Email != "john@example.com" {
 		assert.Error(t, err)
@@ -83,7 +83,7 @@ func TestGivenEmptyEmail_WhenFindEmail_ThenShouldReceiveAnError(t *testing.T) {
 	mock := mock.NewUserRepositoryMock()
 	userUseCase := usecases.NewUserUseCase(mock)
 
-	_, err := userUseCase.FindByEmail("john@example.com")
+	_, err := userUseCase.FindUserByEmail(context.Background(), "john@example.com")
 
 	assert.Error(t, err)
 

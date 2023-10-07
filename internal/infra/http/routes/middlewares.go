@@ -15,6 +15,8 @@ func InitializeMiddlewares(config *configs.Conf, r chi.Router) {
 
 	r.Use(middleware.Heartbeat("/health"))
 
+	r.Use(middleware.Logger)
+
 	r.Use(cors.Handler(cors.Options{
 		AllowedOrigins:   []string{"https://*", "http://*"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},

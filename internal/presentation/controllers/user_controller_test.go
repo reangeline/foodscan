@@ -23,13 +23,18 @@ func (m *MockUserUseCase) CreateUser(ctx context.Context, user *dtos.CreateUserI
 }
 
 // MockUserValidator is a mock implementation of protocols.UserValidatorInterface
-type MockUserValidator struct{}
+type MockUserValidator struct {
+}
 
 func (m *MockUserValidator) ValidateUser(user *dtos.CreateUserInput) error {
 	return nil
 }
 
-func TestUserController_CreateUser(t *testing.T) {
+func (m *MockUserValidator) ValidateUserEmail(email string) error {
+	return nil
+}
+
+func TestCreateUserController_CreateUser(t *testing.T) {
 
 	userUseCase := &MockUserUseCase{}
 	userValidator := &MockUserValidator{}

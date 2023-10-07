@@ -8,5 +8,6 @@ import (
 func InitializeUserRoutes(controller *controllers.UserController, r chi.Router) {
 	r.Route("/users", func(r chi.Router) {
 		r.Post("/", controller.CreateUserRest)
+		r.Get("/", controller.FindUserByEmailRest)
 	})
 }

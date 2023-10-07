@@ -1,6 +1,10 @@
 package dtos
 
-import "github.com/reangeline/foodscan_backend/pkg/entities"
+import (
+	"time"
+
+	"github.com/reangeline/foodscan_backend/pkg/entities"
+)
 
 type CreateUserInput struct {
 	Name     string `json:"name"`
@@ -9,8 +13,9 @@ type CreateUserInput struct {
 }
 
 type UserOutputDTO struct {
-	IDUser   entities.ID `json:"id"`
-	Name     string      `json:"name"`
-	LastName string      `json:"last_name"`
-	Email    string      `json:"email"`
+	IDUser    entities.ID `json:"id"`
+	Name      string      `json:"name"`
+	LastName  string      `json:"last_name"`
+	Email     string      `json:"email"`
+	CreatedAt time.Time   `json:"created_at"`
 }

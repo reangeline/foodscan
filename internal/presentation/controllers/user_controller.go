@@ -94,3 +94,55 @@ func (u *UserController) CreateUser(ctx context.Context, input dtos.CreateUserIn
 
 	return nil
 }
+
+// @Summary      Find user by email
+// @Description  Find user by email
+// @Tags         find users
+// @Accept       json
+// @Produce      json
+// @Param        email query string true "Endereço de email do usuário"
+// @Success      200 {object} dtos.UserOutputDTO
+// @Failure      400 {object} Error
+// @Router       /users [get]
+func (u *UserController) FindUserByEmailRest(w http.ResponseWriter, r *http.Request) {
+	email := r.URL.Query().Get("email")
+
+	ctx := r.Context()
+
+	user, err := u.FindUserByEmail(ctx, email)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(user)
+
+}
+
+func (u *UserController) FindUserByEmailGraphql(ctx context.Context, email string) (*dtos.UserOutputDTO, error) {
+	user, err := u.FindUserByEmail(ctx, email)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
+
+func (u *UserController) FindUserByEmail(ctx context.Context, email string) (*dtos.UserOutputDTO, error) {
+	err := u.userValidator.ValidateUserEmail(email)
+
+	if err != nil {
+		return nil, err
+	}
+
+	user, err := u.userUseCase.FindUserByEmail(ctx, email)
+
+	if err != nil {
+		return user, nil
+	}
+
+	return user, nil
+}

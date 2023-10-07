@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"time"
 
 	"github.com/reangeline/foodscan_backend/internal/domain/entities"
 	"github.com/reangeline/foodscan_backend/internal/dtos"
@@ -65,17 +66,23 @@ func (u *UserRepository) CreateUser(ctx context.Context, user *entities.User) er
 	return nil
 }
 
-func (u *UserRepository) FindByEmail(email string) (*dtos.UserOutputDTO, error) {
+func (u *UserRepository) FindByUserEmail(email string) (*dtos.UserOutputDTO, error) {
 	ctx := context.Background()
 	user, err := u.sqlc.FindUserByEmail(ctx, email)
 	if err != nil {
 		return nil, err
 	}
 
+	var createdAt time.Time
+	if user.CreatedAt.Valid {
+		createdAt = user.CreatedAt.Time
+	}
+
 	return &dtos.UserOutputDTO{
-		IDUser:   user.IDUser,
-		Name:     user.Name,
-		LastName: user.LastName,
-		Email:    user.Email,
+		IDUser:    user.IDUser,
+		Name:      user.Name,
+		LastName:  user.LastName,
+		Email:     user.Email,
+		CreatedAt: createdAt,
 	}, nil
 }
