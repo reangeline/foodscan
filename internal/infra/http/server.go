@@ -6,12 +6,12 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/reangeline/foodscan_backend/configs"
+	"github.com/reangeline/foodscan_backend/config"
 	"github.com/reangeline/foodscan_backend/internal/factory"
-	"github.com/reangeline/foodscan_backend/internal/infra/http/routes"
+	"github.com/reangeline/foodscan_backend/internal/infra/http/route"
 )
 
-func ServerHttp(db *sql.DB, config *configs.Conf) {
+func ServerHttp(db *sql.DB, config *config.Conf) {
 
 	iu, err := factory.InitializeUser(db)
 	if err != nil {
@@ -20,8 +20,8 @@ func ServerHttp(db *sql.DB, config *configs.Conf) {
 
 	router := chi.NewRouter()
 
-	routes.InitializeMiddlewares(config, router)
-	routes.InitializeUserRoutes(iu, router)
+	route.InitializeMiddlewares(config, router)
+	route.InitializeUserRoutes(iu, router)
 
 	log.Printf("connect to http://localhost:%s/ for Rest Api", config.WebServerPort)
 	err = http.ListenAndServe(":"+config.WebServerPort, router)

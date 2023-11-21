@@ -46,13 +46,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/dtos.UserOutputDTO"
+                            "$ref": "#/definitions/dto.UserOutput"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/controllers.Error"
+                            "$ref": "#/definitions/controller.Error"
                         }
                     }
                 }
@@ -76,7 +76,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/dtos.CreateUserInput"
+                            "$ref": "#/definitions/dto.UserInput"
                         }
                     }
                 ],
@@ -87,7 +87,7 @@ const docTemplate = `{
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/controllers.Error"
+                            "$ref": "#/definitions/controller.Error"
                         }
                     }
                 }
@@ -95,7 +95,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "controllers.Error": {
+        "controller.Error": {
             "type": "object",
             "properties": {
                 "message": {
@@ -103,7 +103,7 @@ const docTemplate = `{
                 }
             }
         },
-        "dtos.CreateUserInput": {
+        "dto.UserInput": {
             "type": "object",
             "properties": {
                 "email": {
@@ -117,9 +117,12 @@ const docTemplate = `{
                 }
             }
         },
-        "dtos.UserOutputDTO": {
+        "dto.UserOutput": {
             "type": "object",
             "properties": {
+                "created_at": {
+                    "type": "string"
+                },
                 "email": {
                     "type": "string"
                 },

@@ -8,38 +8,38 @@ import (
 
 	"database/sql"
 
-	"github.com/reangeline/foodscan_backend/internal/domain/contracts/repositories"
-	uc_interface "github.com/reangeline/foodscan_backend/internal/domain/contracts/usecases"
+	"github.com/reangeline/foodscan_backend/internal/domain/contract/repository"
+	uc_interface "github.com/reangeline/foodscan_backend/internal/domain/contract/usecase"
 
-	"github.com/reangeline/foodscan_backend/internal/domain/usecases"
-	"github.com/reangeline/foodscan_backend/internal/infra/databases"
+	"github.com/reangeline/foodscan_backend/internal/domain/usecase"
+	"github.com/reangeline/foodscan_backend/internal/infra/database"
 
-	"github.com/reangeline/foodscan_backend/internal/presentation/controllers"
-	"github.com/reangeline/foodscan_backend/internal/presentation/validation/protocols"
-	"github.com/reangeline/foodscan_backend/internal/presentation/validation/validators"
+	"github.com/reangeline/foodscan_backend/internal/presentation/controller"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/protocol"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/validator"
 )
 
 var setUserRepositoryDependency = wire.NewSet(
-	databases.NewUserRepository,
-	wire.Bind(new(repositories.UserRepositoryInterface), new(*databases.UserRepository)),
+	database.NewUserRepository,
+	wire.Bind(new(repository.UserRepositoryInterface), new(*database.UserRepository)),
 )
 
 var setUserUseCaseDependency = wire.NewSet(
-	usecases.NewUserUseCase,
-	wire.Bind(new(uc_interface.UserUseCaseInterface), new(*usecases.UserUseCase)),
+	usecase.NewUserUseCase,
+	wire.Bind(new(uc_interface.UserUseCaseInterface), new(*usecase.UserUseCase)),
 )
 
 var setUserValidatorDependency = wire.NewSet(
-	validators.NewUserValidator,
-	wire.Bind(new(protocols.UserValidatorInterface), new(*validators.UserValidator)),
+	validator.NewUserValidator,
+	wire.Bind(new(protocol.UserValidatorInterface), new(*validator.UserValidator)),
 )
 
-func InitializeUser(db *sql.DB) (*controllers.UserController, error) {
+func InitializeUser(db *sql.DB) (*controller.UserController, error) {
 	wire.Build(
 		setUserRepositoryDependency,
 		setUserUseCaseDependency,
 		setUserValidatorDependency,
-		controllers.NewUserController,
+		controller.NewUserController,
 	)
-	return &controllers.UserController{}, nil
+	return &controller.UserController{}, nil
 }

@@ -4,11 +4,11 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/reangeline/foodscan_backend/configs"
+	"github.com/reangeline/foodscan_backend/config"
 	"github.com/reangeline/foodscan_backend/internal/infra/http"
 
 	_ "github.com/lib/pq"
-	_ "github.com/reangeline/foodscan_backend/docs"
+	_ "github.com/reangeline/foodscan_backend/doc"
 
 	"github.com/reangeline/foodscan_backend/internal/infra/graphql"
 )
@@ -27,7 +27,7 @@ import (
 // @in header
 // @name Authorization
 func main() {
-	configs, err := configs.LoadConfig(".")
+	configs, err := config.LoadConfig(".")
 	if err != nil {
 		panic(configs)
 	}

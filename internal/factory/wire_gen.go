@@ -9,29 +9,29 @@ package factory
 import (
 	"database/sql"
 	"github.com/google/wire"
-	"github.com/reangeline/foodscan_backend/internal/domain/contracts/repositories"
-	usecases2 "github.com/reangeline/foodscan_backend/internal/domain/contracts/usecases"
-	"github.com/reangeline/foodscan_backend/internal/domain/usecases"
-	"github.com/reangeline/foodscan_backend/internal/infra/databases"
-	"github.com/reangeline/foodscan_backend/internal/presentation/controllers"
-	"github.com/reangeline/foodscan_backend/internal/presentation/validation/protocols"
-	"github.com/reangeline/foodscan_backend/internal/presentation/validation/validators"
+	"github.com/reangeline/foodscan_backend/internal/domain/contract/repository"
+	usecase2 "github.com/reangeline/foodscan_backend/internal/domain/contract/usecase"
+	"github.com/reangeline/foodscan_backend/internal/domain/usecase"
+	"github.com/reangeline/foodscan_backend/internal/infra/database"
+	"github.com/reangeline/foodscan_backend/internal/presentation/controller"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/protocol"
+	"github.com/reangeline/foodscan_backend/internal/presentation/validation/validator"
 )
 
 // Injectors from wire.go:
 
-func InitializeUser(db *sql.DB) (*controllers.UserController, error) {
-	userRepository := databases.NewUserRepository(db)
-	userUseCase := usecases.NewUserUseCase(userRepository)
-	userValidator := validators.NewUserValidator()
-	userController := controllers.NewUserController(userUseCase, userValidator)
+func InitializeUser(db *sql.DB) (*controller.UserController, error) {
+	userRepository := database.NewUserRepository(db)
+	userUseCase := usecase.NewUserUseCase(userRepository)
+	userValidator := validator.NewUserValidator()
+	userController := controller.NewUserController(userUseCase, userValidator)
 	return userController, nil
 }
 
 // wire.go:
 
-var setUserRepositoryDependency = wire.NewSet(databases.NewUserRepository, wire.Bind(new(repositories.UserRepositoryInterface), new(*databases.UserRepository)))
+var setUserRepositoryDependency = wire.NewSet(database.NewUserRepository, wire.Bind(new(repository.UserRepositoryInterface), new(*database.UserRepository)))
 
-var setUserUseCaseDependency = wire.NewSet(usecases.NewUserUseCase, wire.Bind(new(usecases2.UserUseCaseInterface), new(*usecases.UserUseCase)))
+var setUserUseCaseDependency = wire.NewSet(usecase.NewUserUseCase, wire.Bind(new(usecase2.UserUseCaseInterface), new(*usecase.UserUseCase)))
 
-var setUserValidatorDependency = wire.NewSet(validators.NewUserValidator, wire.Bind(new(protocols.UserValidatorInterface), new(*validators.UserValidator)))
+var setUserValidatorDependency = wire.NewSet(validator.NewUserValidator, wire.Bind(new(protocol.UserValidatorInterface), new(*validator.UserValidator)))

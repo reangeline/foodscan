@@ -1,11 +1,11 @@
 basePath: /
 definitions:
-  controller.Error:
+  controllers.Error:
     properties:
       message:
         type: string
     type: object
-  dto.UserInput:
+  dtos.CreateUserInput:
     properties:
       email:
         type: string
@@ -14,10 +14,8 @@ definitions:
       name:
         type: string
     type: object
-  dto.UserOutput:
+  dtos.UserOutputDTO:
     properties:
-      created_at:
-        type: string
       email:
         type: string
       id:
@@ -54,11 +52,11 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/dto.UserOutput'
+            $ref: '#/definitions/dtos.UserOutputDTO'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/controller.Error'
+            $ref: '#/definitions/controllers.Error'
       summary: Find user by email
       tags:
       - find users
@@ -72,7 +70,7 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/dto.UserInput'
+          $ref: '#/definitions/dtos.CreateUserInput'
       produces:
       - application/json
       responses:
@@ -81,7 +79,7 @@ paths:
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/controller.Error'
+            $ref: '#/definitions/controllers.Error'
       summary: Create user
       tags:
       - users

@@ -1,7 +1,7 @@
 package graph
 
 import (
-	controllers "github.com/reangeline/foodscan_backend/internal/presentation/controllers"
+	controller "github.com/reangeline/foodscan_backend/internal/presentation/controller"
 )
 
 // This file will not be regenerated automatically.
@@ -9,5 +9,5 @@ import (
 // It serves as dependency injection for your app, add any dependencies you require here.
 
 type Resolver struct {
-	UserController *controllers.UserController
+	UserController *controller.UserController
 }
